@@ -34,20 +34,20 @@ export default function Programcilar() {
   const [programciListesi, setProgramciListesi] = useState(enIyilerListesi);
   const [programciId, setProgramciId] = useState("");
 
-	
+
   const oneCikaninIsmi = () => {
     // Bunu sona bırakın!
     // Bu bir event handler değil, yardımcıdır. Kullanımını JSX'te gözlemleyin.
     // Öne çıkan geliştiricinin _isim_ adını döndürmek için her iki state dilimini kullanacak.
     // Closureların güzelliği, argümanlar yoluyla bilgi enjekte etmeye gerek kalmadan programın 
-	// bu bölgesinden her iki state dilimini de "görebilmemiz"dir.
-  return programciListesi[programciId-1].isim;
+    // bu bölgesinden her iki state dilimini de "görebilmemiz"dir.
+    return programciListesi[programciId - 1].isim;
   };
 
   const stil = {
     fontSize: '1.5em',
     marginTop: '0.5em',
-    color: programciId ? "gold": 'royalblue', // 🤔 kutlarken renk gold'a dönecek
+    color: programciId ? "gold" : 'royalblue', // 🤔 kutlarken renk gold'a dönecek
   };
 
   return (
@@ -59,9 +59,9 @@ export default function Programcilar() {
           // Şöyle diyebiliriz: "aa bu çalışıyor!" Ama programcilar bir state diliminden gelmiyorsa,
           // asla yeni programci ekleyemeyiz, programcilari düzenleyemeyiz ya da silemeyiz. Düzeltin!
           " */
-          enIyilerListesi.map(dev =>
+          programciListesi.map(dev =>
             <div className='programmer' key={dev.id}>
-              {dev.isim} <button onClick={() => {/* burada dev.id 'yi öne çıkan id'ye atayın */ }}>Kutla</button>
+              {dev.isim} <button onClick={() => {/* burada dev.id 'yi öne çıkan id'ye atayın */  setProgramciId(dev.id) }}>Kutla</button>
             </div>
           )
         }
@@ -71,7 +71,7 @@ export default function Programcilar() {
           // Üçlüler, bir şeyin "gerçekliğine" bağlı olarak "bir şeyi veya diğerini" ifade etmek için harikadır..
           // Sözde-kod: öne çıkan true ise metin 1'i oluşturun, aksi takdirde metin 2'yi oluşturun..
           // Sabit kodlanmış false'u doğru değişkenle değiştirin.
-          false
+          programciId
             ? `🎉 Hadi ${oneCikaninIsmi()}'ı kutlayalım! 🥳`
             : 'Harika bir programcı seçin'
         }
@@ -79,4 +79,3 @@ export default function Programcilar() {
     </div>
   );
 }
- 
