@@ -29,7 +29,7 @@ ADIM 2:
 ADIM 3:
   JSX'teki bazı sabit kodlanmış bilgileri, kıvrımlı parantezler ({}) içinde enterpolasyonlu ifadelerle değiştirmemiz gerekiyor.
   Sabit olarak yazılmış "0" sayısını {sayici} değişkeni ile değiştirerek başlayın.
-  Sonra "çift" kelimesini şu kurala göre değiştirin: {eğer sayıcı çiftse, kelime `çift` değilse `tek` olacak}.
+  Sonra "çift" kelimesini şu kurala göre değiştirin: {eğer sayıcı çiftse, kelime `çift;` değilse `tek` olacak}.
 
 ADIM 4:
   Bu click handler'ın, "sayici" stateini artı bir yapacak şekilde programlamak için "setSayici"i kullanması gerekiyor.
@@ -46,24 +46,35 @@ ADIM 6:
 */
 
 import React from 'react'; /* ADIM 0 buraya*/
+import { useState } from 'react';
 
 export default function Sayac() {
+  const [sayici, setSayici] = useState(0);
   /* ADIM 1 buraya*/
 	
 	
   const artirici = () => {
+    setSayici(sayici + 1);
     /* ADIM 4 buraya */
   };
   const azaltici = () => {
     /* ADIM 5 */
+    setSayici(sayici - 1);
   };
   const reset = () => {
+    /* ADIM 6 */
+    setSayici(0);
   };
 
   const stil = {
     fontSize: '1.5em',
     marginBottom: '0.3em',
-    color: 'royalblue', /* ADIM 2 */
+    color: sayici % 2 ? 
+      'crimson':
+      'royalblue'
+       /* ADIM 2 */
+    
+    
   };
 
   return (
@@ -71,6 +82,9 @@ export default function Sayac() {
       <h2>Sayaç</h2>
       <div id='sayici' style={stil}>
         Sayı {sayici} {/* ADIM 3  buraya*/ }
+        {sayici % 2 ?
+          "tek":
+          "çift"}
       </div>
       <div>
         <button id='artirici' onClick={artirici}>Artırıcı</button>
