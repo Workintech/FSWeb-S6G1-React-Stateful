@@ -17,5 +17,5 @@ root.render(<>
   <Dondurucu />
   <Input />
   <Kareler />
-  <Programcilar />
+  <Programcilar /> 
 </>);
